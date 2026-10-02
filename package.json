@@ -14,9 +14,10 @@
     "test:watch": "vitest",
     "test:integration": "vitest run --config vitest.integration.config.ts",
     "test:e2e": "playwright test",
-    "db:generate": "drizzle-kit generate",
+    "db:generate": "drizzle-kit generate && tsx scripts/db/embed-migrations.ts",
     "cloud:migrate": "tsx scripts/cloud/migrate.ts",
-    "cloud:build": "tsx scripts/cloud/migrate.ts && next build"
+    "cloud:build": "next build",
+    "db:embed": "tsx scripts/db/embed-migrations.ts"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.11.3",
@@ -64,6 +65,6 @@
     "vitest": "^2.1.8"
   },
   "engines": {
-    "node": ">=20.11"
+    "node": "22.x"
   }
 }

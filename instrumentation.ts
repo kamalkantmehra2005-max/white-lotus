@@ -6,9 +6,14 @@
  */
 export async function register() {
   if (process.env.NEXT_RUNTIME !== "nodejs") return;
-  // Online edition: serverless functions have no long-lived process and no local files to tidy.
   const { isCloud } = await import("@/lib/edition");
-  if (isCloud()) return;
+  if (isCloud()) {
+    // Online edition: bring the hosted database up to date before the first request. Nothing else to do here —
+    // serverless functions have no long-lived process and no local files to tidy.
+    const { ensureCloudMigrated } = await import("@/lib/database/cloud-migrate");
+    await ensureCloudMigrated().catch((e) => console.error("[white-lotus] database migration failed at start-up (will retry on the next request):", e instanceof Error ? e.message : e));
+    return;
+  }
   const { runRetention } = await import("@/lib/files/retention");
   const { closeDatabase } = await import("@/lib/database/client");
   const tick = () => runRetention().catch(() => {});
