@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /$
+Disallow: /chat
+Disallow: /api
+Disallow: /settings
+Disallow: /admin
