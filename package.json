@@ -17,7 +17,8 @@
     "db:generate": "drizzle-kit generate && tsx scripts/db/embed-migrations.ts",
     "cloud:migrate": "tsx scripts/cloud/migrate.ts",
     "cloud:build": "next build",
-    "db:embed": "tsx scripts/db/embed-migrations.ts"
+    "db:embed": "tsx scripts/db/embed-migrations.ts",
+    "pack:github": "tsx scripts/pack-github-upload.ts"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.11.3",

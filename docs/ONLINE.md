@@ -46,9 +46,10 @@ You need three free accounts: **GitHub**, **Neon** (database) and **Vercel** (ho
 
 ### 1. Put the code on GitHub
 
-Use one of these:
+GitHub's browser uploader takes **at most 100 files per upload** and silently refuses bigger drops, so never drag the whole project in at once. Use one of these:
 
-- **From a PC:** go to github.com → **New repository** (Private) → **uploading an existing file**. Drag in all the files from the unzipped `white-lotus` folder → **Commit**.
+- **From a PC, in the browser (3 uploads):** go to github.com → **New repository** (Private). Then, for each of `github-upload-1-of-3.zip`, `-2-of-3.zip`, `-3-of-3.zip` (ask for them, or make them with `npm run pack:github`): unzip it, open the `upload-N` folder, press **Ctrl+A**, drag everything onto the repository page (**Add file → Upload files**), wait until every file is listed, then **Commit changes**. Each batch is under 100 files; together they are the complete project.
+- **From a PC, without GitHub at all:** double-click **`deploy-online.cmd`** in the unzipped project folder (see step 4b).
 - **From a phone only:**
   1. On github.com, create an empty private repository, then open it in **GitHub Codespaces** (Code → Codespaces → Create). It's free for limited monthly use.
   2. In the editor, upload `white-lotus-local.zip`, then run this in the terminal:
@@ -71,6 +72,8 @@ Use one of these:
 Check the provider's current free-tier terms. They change, and visitors using the site without an account spend your quota.
 
 ### 4. Deploy on Vercel
+
+**4b. Alternative — deploy straight from your PC (no GitHub):** after creating the project in Vercel once (steps 4.1–4.2 below, any first build may fail — that's fine), double-click **`deploy-online.cmd`**. Sign in to Vercel in the browser window that opens, then answer: *Set up and deploy?* **Y** · *Which scope?* your name · *Link to existing project?* **Y** · *project name:* `white-lotus`. It uploads the whole folder and builds it on Vercel. Run it again whenever you want to publish an update.
 
 1. At vercel.com, sign up with GitHub → **Add New → Project** → import your repository. The included `vercel.json` already sets the build command.
 2. Under **Environment Variables**, add:
