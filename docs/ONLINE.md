@@ -140,7 +140,8 @@ It's the same site, so the same account and data apply.
 - **"this copy of the project is incomplete. Missing: …"** — GitHub's browser uploader accepts at most **100 files per upload**, so part of the project was left out. Open the unzipped `white-lotus` folder, drag the missing folders (keeping the folder structure) onto the repository page, commit, and deploy again. Check the repository has these top-level entries: `app`, `components`, `config`, `docs`, `drizzle`, `lib`, `public`, `scanner`, `scripts`, `tests`, `types`, `package.json`, `package-lock.json`, `next.config.ts`, `tsconfig.json`, `tailwind.config.ts`, `postcss.config.mjs`, `proxy.ts`, `instrumentation.ts`, `vercel.json`.
 - **"Cannot find module …"** without that message — same cause; an older copy. Upload the current `next.config.ts` too.
 - **Avoid the uploader altogether:** on a PC with Node.js, double-click **`deploy-online.cmd`** in the unzipped folder. It uploads the whole folder to Vercel directly (sign in once in the browser). Updates: run it again. The environment variables still come from the Vercel dashboard.
-- **Red lines you don't understand:** copy the lines after "Error" from the build log and ask.
+- **The log stops right after `> next build` with nothing else:** the build was stopped from outside before Next.js printed a single line — most often because a second deployment started for the same project (each upload to GitHub makes one commit and one deployment, and the import page can start another). Open the project → **Deployments** → **⋯ → Redeploy** on the newest one. The code builds under Vercel's own build tool (`vercel build`), so a retry normally succeeds.
+- **Red lines you don't understand:** scroll to the very bottom of **Build Logs**, copy the last three lines, and ask.
 
 ## Updating
 

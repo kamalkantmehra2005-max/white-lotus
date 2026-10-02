@@ -62,6 +62,9 @@ const nextConfig: NextConfig = {
   experimental: { serverActions: { bodySizeLimit: "2mb" } },
   // Never ship source maps of server code to the browser.
   productionBrowserSourceMaps: false,
+  // The online edition never reads local data files, so keep serverless functions small and quiet: don't let the
+  // local-edition helpers (dynamic fs paths) pull the whole project into every function's bundle.
+  outputFileTracingExcludes: { "/**/*": ["./docs/**", "./tests/**", "./scripts/**", "./scanner/**", "./drizzle/**", "./*.md", "./*.cmd", "./*.sh"] },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
